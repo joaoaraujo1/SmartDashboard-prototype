@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/mapfragment"
+        class="com.here.android.mpa.mapping.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/upshadow" />
+
+
+    <RelativeLayout
+        android:id="@+id/destinationTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp">
+
+        <Button
+            android:id="@+id/backbutton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/backarrow"
+            android:onClick="backToMain"
+            android:layout_marginLeft="5dp"/>
+
+        <EditText
+            android:id="@+id/destinationString"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:hint="Enter destination"
+            android:textAlignment="center"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textPostalAddress"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="35dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/deleteTextButton"
+            android:background="@drawable/cancelbutton"
+            android:onClick="resetAddress"
+            android:layout_centerHorizontal="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="12.5dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tickChoiceLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/destinationTextLayout"
+        android:layout_alignRight="@id/destinationTextLayout"
+        android:visibility="invisible">
+
+        <View
+            android:id="@+id/tickChoiceVIew"
+            android:layout_width="110dp"
+            android:layout_height="75dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@drawable/routebox" />
+
+        <CheckBox
+            android:button="@drawable/checkbox_script"
+            android:paddingLeft="10dp"
+            android:id="@+id/fastestTickBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="15dp"
+            android:textColor="#FFF"
+            android:text="Fastest"
+            android:checked="true"
+            android:enabled="false"
+            android:onClick="fastestRouteTick"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <CheckBox
+            android:button="@drawable/checkbox_script"
+            android:id="@+id/shortestTickBox"
+            android:layout_below="@id/fastestTickBox"
+            android:paddingLeft="10dp"
+            android:layout_alignLeft="@id/fastestTickBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#FFF"
+            android:text="Shortest"
+            android:onClick="shortestRouteTick"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/destinationTextLayout"
+        android:id="@+id/etaLayoutMap"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/tripsymbol" />
+
+        <TextView
+            android:id="@+id/trip_length"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:gravity="center_vertical"
+            android:text="-"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="KM"
+            android:textSize="12sp"
+            android:layout_marginRight="18dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:gravity="center_vertical"
+            android:text="E.T.A: "
+            android:textColor="#FFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/etaTime"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="-"
+            android:layout_marginRight="4dp"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="mins"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/suggestionListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000"
+        android:visibility="invisible"
+        android:layout_below="@id/destinationTextLayout"
+        android:layout_marginRight="60dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <RelativeLayout
+        android:id="@+id/gps_loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000">
+
+        <ProgressBar
+            android:id="@+id/gps_loading_spinner"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/gps_loading_spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/activity_bottom_margin"
+            android:text="Locating Device..."
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/route_loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ProgressBar
+            android:id="@+id/route_calculation_bar"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/route_calculation_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/activity_bottom_margin"
+            android:text="Calculating Route..."
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/touchDestinationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#000"
+        android:onClick="getDirectionsButton"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:text="Get Directions"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/navigationButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginRight="38dp"
+        android:background="@drawable/gobutton"
+        android:onClick="beginNavigationActivity" />
+
+
+</RelativeLayout>

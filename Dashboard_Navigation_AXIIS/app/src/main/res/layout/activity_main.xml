@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.axiis_ea.dashboard_navigation_axiis.MainActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.65"
+        android:background="#000" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/clocksymbol" />
+
+        <TextView
+            android:id="@+id/clock_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="00:00"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/outsidetemperaturesymbol" />
+
+        <TextView
+            android:id="@+id/outside_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="0"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="ºC" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/rpm_view"
+        android:layout_width="285dp"
+        android:layout_height="285dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/rpmclock" />
+
+    <TextView
+        android:id="@+id/speed_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/rpm_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:paddingBottom="8dp"
+        android:onClick="zeroSpeed"
+        android:text="0"
+        android:textColor="#FFF"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/speed_value"
+        android:layout_centerHorizontal="true"
+        android:text="KM/H"
+        android:textSize="10sp" />
+
+
+    <RelativeLayout
+        android:layout_width="45dp"
+        android:id="@+id/menuLayout"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="76dp"
+        android:layout_marginRight="8dp">
+
+
+        <Button
+            android:id="@+id/optionsButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/appbuttonclosed"
+            android:onClick="openMenu" />
+
+        <Button
+            android:id="@+id/definitionsButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/definitionsicon"
+            android:visibility="invisible"/>
+            <!--android:onClick=""!-->
+
+
+        <Button
+            android:id="@+id/goProButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/definitionsButton"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/goproicon"
+            android:onClick="openGoPro"
+            android:visibility="invisible"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+        <Button
+            android:id="@+id/dataButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@id/goProButton"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/dataicon"
+            android:visibility="invisible"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        <!--android:onClick=""-->
+
+        <Button
+            android:id="@+id/mapButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@id/dataButton"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/navigationicon"
+            android:onClick="openMap"
+            android:visibility="invisible"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>/>
+
+
+        <Button
+            android:id="@+id/alarmButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@id/mapButton"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/alarmicon"
+            android:onClick="initAlarm"
+            android:visibility="invisible"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ProgressBar
+            android:id="@+id/loading_bar"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true" />
+
+        <TextView
+            android:id="@+id/loadingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/loading_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/activity_bottom_margin"
+            android:text="LOADING TEXT"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id ="@+id/trip_layout"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="68dp"
+            android:layout_marginBottom="22dp"
+            android:layout_alignParentLeft="true">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/tripsymbol" />
+
+            <TextView
+                android:id="@+id/trip_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="2dp"
+                android:gravity="center_vertical"
+                android:text="0"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="KM"
+                android:textSize="8sp" />
+
+        </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/trip_layout"
+        android:id="@+id/fuelLayout"
+        android:layout_alignBottom="@+id/trip_layout"
+        android:layout_marginLeft="12dp">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:src="@drawable/fuelcellempty"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/fuelBar"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/fuelSymbol"
+            android:layout_toRightOf="@id/fuelBar"
+            android:src="@drawable/fuelsymbol"
+            android:layout_alignTop="@+id/fuelBar"
+            android:layout_alignBottom="@+id/fuelBar" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id ="@+id/engine_layout"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@+id/fuelLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="172dp">
+
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/gearsymbol" />
+
+        <TextView
+            android:id="@+id/gear_val"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:gravity="center_vertical"
+            android:text="N"
+            android:textColor="#00FF00"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id ="@+id/motorTemp_layout"
+        android:visibility="visible"
+        android:layout_toRightOf="@+id/engine_layout"
+        android:layout_toEndOf="@+id/engine_layout"
+        android:layout_alignBottom="@+id/engine_layout"
+        android:layout_marginLeft="26dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/temperaturesymbol"
+            android:id="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/motor_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="2dp"
+            android:gravity="center_vertical"
+            android:text="0"
+            android:textColor="#FFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="ºC"
+            android:textSize="8sp" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
