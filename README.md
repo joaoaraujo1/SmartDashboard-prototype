@@ -6,6 +6,8 @@
 
 The Smart Dashboard was a project developed with [AXIIS](https://www.axiis-ea.com/) that reached the finals on a national contest for Hardware Start-Ups. The prototype consisted of 2 main hardware parts: An an Android-based dashboard device and an Arduino board with some electronics. In this repo, you will find the software that made the prototype work with features that included speedometer, temperature reading, GPS navigation and a smartphone-connected alarm. The Android code works with a trial version of HERE maps for the maps/navigation features.
 
+In this repository, you will find the complete Arduino and Android code that made the prototype work and some testing footage to the code and electronics in the earlier stages of development of the dashboard.
+
 ## Electronics ##
 
 The following electronics were mounted on an Arduino Uno board used for the prototype:
@@ -14,8 +16,6 @@ The following electronics were mounted on an Arduino Uno board used for the prot
 - A thermistor and a resistance (working as a temperature sensor)
 - An LED that worked as a warning signal when the alarm is triggered.
 - An IMU (compatible with Adafruit libraries) to sense movement when the alarm is active.
-
-### Testing footage ###
 
 First test of the electromagnetic sensor on a bicycle wheel
 
@@ -28,6 +28,13 @@ Applying a heat source to the temperature sensor
 ## Features ##
 
 ### Smartphone-connected alarm ###
+The alarm was programmed to work with a SIM card used exclusively for the dashboard. When the alarm is active, the dashboard passively scans for movement (using the IMU). If it senses movement, it rings a small warning two times. If the dashboard senses the bike is being moved after those warnings, the alarm increases its ringing time and periodically sends the owner messages with the bike's location until being switched off. To switch off the alarm, the user sets his own password or code.
+
+Testing position broadcast mechanism and prototypical message
+<img src="https://user-images.githubusercontent.com/40466329/53130553-8a9b2000-3562-11e9-8744-6ea364eee414.gif" alt="alt text" width="500" height="200"> <img src="https://user-images.githubusercontent.com/40466329/53130547-88d15c80-3562-11e9-9fec-1a61e524e58f.png" alt="alt text" width="250" height="250">
+
+
+
 
 ### GPS and Navigation ###
 
